@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/drinksListFragment">
+
+    <!-- Drinks List Fragment -->
+    <fragment
+        android:id="@+id/drinksListFragment"
+        android:name="com.action.bottomnavigation.ui.list.ListFragment"
+        android:label="Drinks List"
+        tools:layout="@layout/fragment_list">
+
+        <!-- Arguments (if passing data) -->
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="all" />
+
+        <!-- Action to navigate to Random Drink -->
+        <action
+            android:id="@+id/action_list_to_random"
+            app:destination="@id/randomDrinkFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <!-- Random Drink Fragment -->
+    <fragment
+        android:id="@+id/randomDrinkFragment"
+        android:name="com.action.bottomnavigation.ui.Random.RandomFragment"
+        android:label="Random Drink"
+        tools:layout="@layout/fragment_random">
+
+        <!-- Arguments for passing drink ID -->
+        <argument
+            android:name="drinkId"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+        <deepLink
+            app:uri="myapp://randomDrink" />
+    </fragment>
+
+    <!-- Search Drink Fragment -->
+    <fragment
+        android:id="@+id/searchDrinkFragment"
+        android:name="com.action.bottomnavigation.ui.search.SearchFragment"
+        android:label="Search Drink"
+        tools:layout="@layout/fragment_search">
+
+        <!-- Action to go back to Drinks List -->
+        <action
+            android:id="@+id/action_search_to_list"
+            app:destination="@id/drinksListFragment"
+            app:popUpTo="@id/drinksListFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+</navigation>
